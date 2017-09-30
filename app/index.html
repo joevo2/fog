@@ -5,6 +5,7 @@
     <style>
       html {
         -webkit-app-region: drag;
+        background-color: #292f33;
       }
 
       body {
@@ -42,6 +43,27 @@
         const fs = require('fs');
         const sweetalert_css = fs.readFileSync(__dirname + '/sweetalert.css', 'utf8');
         this.insertCSS(sweetalert_css);
+        const darkModeCss = `
+          * {
+            color: #ffffff !important;
+            background-color: #292f33;
+          }
+          ::-webkit-scrollbar {
+            background-color: #292f33;
+           }
+          ::-webkit-resizer {
+            background-color: #292f33;
+           }
+        `;
+        this.insertCSS(darkModeCss);
+
+      });
+
+      webview.addEventListener('keydown', function(event) {
+        // Cmd + d to toggle dark mode
+        if (event.metaKey && event.keyCode === 68) {
+          // TODO
+        }
       });
 
       // Try to force a sync before closing
